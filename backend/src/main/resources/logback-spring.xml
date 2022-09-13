@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOGS" value="./logs" />
+    
+    <timestamp key="startTimestamp" datePattern="yyyy-MM-dd'_'HH-mm-ss"/>
+
+    <appender name="Console"
+        class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{ISO8601} %-5level [%t] %C{1.}.%M\(\): %msg%n%throwable
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="RollingFile"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/demo1-${startTimestamp}.log</file>
+        <encoder
+            class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+        </encoder>
+
+        <rollingPolicy
+            class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 10 MegaBytes -->
+            <fileNamePattern>${LOGS}/archived/demo1--${startTimestamp}-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+    
+    <!-- LOG everything at INFO level -->
+    <root level="info">
+    	<springProfile name="local_dev">
+        	<appender-ref ref="RollingFile" />
+        </springProfile>
+        <appender-ref ref="Console" />
+    </root>
+
+    <!-- com.demo2 at TRACE level -->
+    <logger name="com.example.demo2" level="trace" additivity="false">
+    	<springProfile name="local_dev">
+        	<appender-ref ref="RollingFile" />
+        </springProfile>
+        <appender-ref ref="Console" />
+    </logger>
+
+</configuration>

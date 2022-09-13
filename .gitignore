@@ -1,0 +1,88 @@
+# starting point was .gitignore from the initial Spring Boot project and at the bottom the 
+
+.project
+.settings
+
+backend/target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+backend/logs/
+
+frontend/.settings
+frontend/target
+
+
+### STS ###
+.apt_generated
+backend/.classpath
+.factorypath
+backend/.project
+backend/.settings
+
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+frontend/dist
+frontend/tmp
+/frontendout-tsc
+frontend/bazel-out
+
+# Node
+frontend/node_modules
+frontendnpm-debug.log
+frontendyarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+frontend/.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+frontend/.angular/cache
+frontend/.sass-cache/
+frontend/connect.lock
+frontend/coverage
+frontend/libpeerconnection.log
+frontendtestem.log
+frontend/typings
+
+# System files
+frontend.DS_Store
+frontendThumbs.db
+
